@@ -88,3 +88,8 @@ sw.*
 
 # Vim swap files
 *.swp
+.firebase
+.firebaserc
+.yarn.lock
+.nuxt
+.editorconfig
