@@ -42,6 +42,9 @@ export const actions = {
     if (_.isEmpty(account)) {
       const provider = new this.$firebase.auth[singInWith]()
       resp = await this.$firebase.auth().signInWithPopup(provider)
+      if (resp.additionalUserInfo.isNewUser){
+        await dispatch('fireSet', { collection: 'users', doc: resp.user.uid, data: { email: resp.user.email } })
+      }
     } else {
       resp = await this.$firebase.auth()[singInWith](account.email, account.password)
     }
@@ -53,6 +56,7 @@ export const actions = {
     await this.$firebase.auth().createUserWithEmailAndPassword(account.email, account.password)
     const token = await this.$firebase.auth().currentUser.getIdToken()
     const { email, uid } = await this.$firebase.auth().currentUser
+    await dispatch('fireSet', { collection: 'users', doc: uid, data: { email } })
     return { email, uid, token }
   }
 

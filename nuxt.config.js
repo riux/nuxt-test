@@ -1,5 +1,6 @@
 import colors from 'vuetify/es5/util/colors'
 import webpack from 'webpack'
+require('dotenv').config()
 export default {
   mode: 'universal',
   /*
@@ -33,8 +34,8 @@ export default {
    ** Plugins to load before mounting the App
    */
   plugins: [
-    { src: '~/plugins/firebase.js' }
-    /*{ src: '~/plugins/vuetify.js', mode: 'client' }*/
+    { src: '~/plugins/firebase.js' },
+    { src: '~/plugins/vuetify.js', mode: 'client' }
   ],
   /*
    ** Nuxt.js dev-modules
