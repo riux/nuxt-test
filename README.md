@@ -1,10 +1,10 @@
-# nuxt-test
+# Blog system, using nuxjs 2 and firebase
 
-> My fabulous Nuxt.js project
+I share this blog system using the technologies of nuxjs (vuejs, vuex) and firebase (cloud functions, firestore, storage, auth), which are part of the transmissions that are made on the facebook page: https://www.facebook.com/Rem-Mend-432138587624895/
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ yarn install
 
@@ -17,6 +17,16 @@ $ yarn start
 
 # generate static project
 $ yarn generate
+
+# build for production (firebase hosting) and launch firebase server
+$ yarn build:serve
+
+# build for production (firebase hosting) and deploy firebase hosting
+$ yarn build:deploy
+
+# delete node_modules and yarn.lock, from root and funtions dir
+$ yarn rm
+
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
