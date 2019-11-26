@@ -39,7 +39,22 @@ in firebase console enable the authentication methods of google, facebook and ma
 
 ## Build Setup
 
+Clone this project
+
 ```bash
+# move to dir project
+$ cd nuxt-test
+
+# create or edit the .env file with the credentials of your project created in firebase
+
+KEY_API_FIREBASE='your-apiKey'
+AUTH_DOMAIN_FIREBASE='your-authDomain'
+DATABASE_URL_FIREBASE='your-databaseURL'
+PROJECT_ID_FIREBASE='your-projectId'
+STORAGE_BUCKET_FIREBASE='your-storageBucket'
+MESSAGIN_SENDER_ID_FIREBASE='your-messagingSenderId'
+APPI_ID_FIREBASE='your-appId'
+
 # install dependencies
 $ yarn install
 
