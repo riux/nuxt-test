@@ -1,6 +1,9 @@
 <template>
   <v-app dark>
-    <NavDrawer :open="openIn" @close="openIn = false" />
+    <NavDrawer
+      :open="openIn"
+      @close="openIn = false"
+    />
     <v-app-bar
       :clipped-left="clipped"
       fixed
@@ -35,7 +38,10 @@
         <nuxt />
       </v-container>
     </v-content>
-    <UserDrawer :open="userOpen" @close="userOpen = false" />
+    <UserDrawer
+      :open="userOpen"
+      @close="userOpen = false"
+    />
     <v-footer
       :fixed="fixed"
       app

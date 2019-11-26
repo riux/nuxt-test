@@ -93,3 +93,5 @@ sw.*
 .yarn.lock
 .nuxt
 .editorconfig
+.vscode
+public

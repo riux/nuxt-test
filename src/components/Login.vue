@@ -53,9 +53,11 @@
             <h1 class="flex my-4 primary--text">
               Inicio de sesión
             </h1>
-            <v-alert type="success">
-              {{ $store.state.alert.message }}
-            </v-alert>
+            <!-- <template>
+              <v-alert :type="$store.state.alert.type">
+                {{ $store.state.alert.message }}
+              </v-alert>
+            </template> -->
           </div>
           <template v-if="!register">
             <v-form ref="form">
@@ -109,19 +111,32 @@
         <v-card-actions>
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
-              <v-btn @click.prevent="loginAccount('FacebookAuthProvider')" v-on="on" icon>
-                <v-icon color="blue" large>
+              <v-btn
+                @click.prevent="loginAccount('FacebookAuthProvider')"
+                v-on="on"
+                icon
+              >
+                <v-icon
+                  color="blue"
+                  large
+                >
                   fab fa-facebook-square fa-lg
                 </v-icon>
               </v-btn>
             </template>
             <span>Inicia con facebook</span>
-          </v-tooltip>
-          &nbsp;&nbsp;&nbsp;&nbsp;
+          </v-tooltip>&nbsp;&nbsp;&nbsp;&nbsp;
           <v-tooltip bottom>
             <template v-slot:activator="{ on }">
-              <v-btn @click.prevent="loginAccount('GoogleAuthProvider')" v-on="on" icon>
-                <v-icon color="red" large>
+              <v-btn
+                @click.prevent="loginAccount('GoogleAuthProvider')"
+                v-on="on"
+                icon
+              >
+                <v-icon
+                  color="red"
+                  large
+                >
                   fab fa-google fa-lg
                 </v-icon>
               </v-btn>
@@ -168,10 +183,8 @@
   </div>
 </template>
 <script>
-
 export default {
-  components: {
-  },
+  components: {},
   data() {
     return {
       openIn: false,
@@ -183,8 +196,13 @@ export default {
       register: false,
       rules: {
         required: value => !!value || 'Requerido',
-        email: value => (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(value)) || 'Ingrese email válido',
-        equals: value => this.account.password === this.account.rePassword || 'Los password deben coincidir'
+        email: value =>
+          /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(
+            value
+          ) || 'Ingrese email válido',
+        equals: value =>
+          this.account.password === this.account.rePassword ||
+          'Los password deben coincidir'
       }
     }
   },
@@ -198,43 +216,57 @@ export default {
     }
   },
   methods: {
-    async loginAccount(singInWith){
+    async loginAccount(singInWith) {
       try {
         this.loading = true
-        const resp = await this.$store.dispatch('firebase/fireLogin', { singInWith })
+        const resp = await this.$store.dispatch('firebase/fireLogin', {
+          singInWith
+        })
         console.log('exito', resp)
         this.loading = false
         this.openIn = false
-      } catch (e){
+      } catch (e) {
         this.loading = false
-        this.$store.dispatch('showAlert', { type: 'error', message: 'Ocurrio un error en el login :(', time: 5000 })
+        this.$store.dispatch('showAlert', {
+          type: 'error',
+          message: 'Ocurrio un error en el login :(',
+          time: 5000
+        })
         console.log('error en loginAccount: ', e)
       }
     },
-    async login(singInWith){
-      try {
-        if (this.$refs.form.validate()){
-          this.loading = true
-          const resp = await this.$store.dispatch('firebase/fireLogin', { singInWith, account: this.account })
-          console.log('exito', resp)
-          this.loading = false
-          this.openIn = false
-        }
-      } catch (e){
-        this.loading = false
-        this.$store.dispatch('showAlert', { type: 'error', message: 'Ocurrio un error en el login :(', time: 5000 })
-        console.log('error en loginAccount: ', e)
-      }
+    login(singInWith) {
+      this.$store.dispatch('showAlert', {
+        type: 'error',
+        message: 'Ocurrio un error en el login :(',
+        time: 5000
+      })
+      // try {
+      //   if (this.$refs.form.validate()){
+      //     this.loading = true
+      //     const resp = await this.$store.dispatch('firebase/fireLogin', { singInWith, account: this.account })
+      //     console.log('exito', resp)
+      //     this.loading = false
+      //     this.openIn = false
+      //   }
+      // } catch (e){
+      //   this.loading = false
+      //   this.$store.dispatch('showAlert', { type: 'error', message: 'Ocurrio un error en el login :(', time: 5000 })
+      //   console.log('error en loginAccount: ', e)
+      // }
     },
-    async createUser(){
+    async createUser() {
       try {
-        if (this.$refs.form.validate()){
+        if (this.$refs.form.validate()) {
           this.loading = true
-          const resp = await this.$store.dispatch('firebase/createUser', this.account)
+          const resp = await this.$store.dispatch(
+            'firebase/createUser',
+            this.account
+          )
           console.log(resp)
           this.loading = false
         }
-      } catch (e){
+      } catch (e) {
         this.loading = false
         console.log(e)
       }

@@ -4,13 +4,13 @@ import 'firebase/auth'
 
 if (!firebase.apps.length) {
   const config = {
-    apiKey: 'AIzaSyAXbklsvK35ExFgHvj05PNr4fBVpGG9Yc4',
-    authDomain: 'nuxt-test-bdc67.firebaseapp.com',
-    databaseURL: 'https://nuxt-test-bdc67.firebaseio.com',
-    projectId: 'nuxt-test-bdc67',
-    storageBucket: 'nuxt-test-bdc67.appspot.com',
-    messagingSenderId: '1030205196183',
-    appId: '1:1030205196183:web:14678b3085f67cd080e6d2'
+    apiKey: process.env.keyFb,
+    authDomain: process.env.authDomainFirebase,
+    databaseURL: process.env.dbUrlFb,
+    projectId: process.env.projectIdFb,
+    storageBucket: process.env.storageFb,
+    messagingSenderId: process.env.messajeSendFb,
+    appId: process.env.appIdFb
   }
   firebase.initializeApp(config)
 }

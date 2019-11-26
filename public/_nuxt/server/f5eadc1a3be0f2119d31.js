@@ -1,1 +1,0 @@
-exports.ids=[2],exports.modules={111:function(t,e,r){"use strict";r.r(e);var n={data:()=>({saludo:"Hola desde nuxt js"})},o=r(11);var component=Object(o.a)(n,(function(){var t=this.$createElement;return(this._self._c||t)("div",[this._ssrNode(this._ssrEscape("\n  "+this._s(this.saludo)+"\n"))])}),[],!1,(function(t){}),"fce571c2","0442a18a");e.default=component.exports}};

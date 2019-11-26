@@ -10,16 +10,17 @@
     "start": "nuxt start --hostname localhost",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "build:deploy": "yarn && yarn --cwd functions && nuxt build && rm -rf public/ && mkdir -p public/_nuxt && cp -r functions/.nuxt/dist/* public/_nuxt && cp -r src/static/* public/ && firebase deploy",
-    "build:serve": "yarn && yarn --cwd functions && nuxt build && rm -rf public/ && mkdir -p public/_nuxt && cp -r functions/.nuxt/dist/* public/_nuxt && cp -r src/static/* public/ && firebase serve"
+    "build:serve": "yarn && yarn --cwd functions && nuxt build && rm -rf functions/.nuxt && rm -rf public/ && mkdir -p public/_nuxt && cp -r .nuxt functions/ && cp -r .nuxt/dist/* public/_nuxt && cp -r src/static/* public/ && firebase serve",
+    "build:deploy": "yarn && yarn --cwd functions && nuxt build && rm -rf functions/.nuxt && rm -rf public/ && mkdir -p public/_nuxt && cp -r .nuxt functions/ && cp -r .nuxt/dist/* public/_nuxt && cp -r src/static/* public/ && firebase deploy",
+    "rm": "rm -rf node_modules && rm -f yarn.lock && rm -rf functions/node_modules && rm -f functions/yarn.lock"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "dotenv": "^8.2.0",
     "firebase": "^7.4.0",
     "nuxt": "^2.0.0"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.11.2",
     "@nuxtjs/eslint-config": "^1.0.1",
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/vuetify": "^1.0.0",

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{416:function(t,n,e){"use strict";e.r(n);var c={data:function(){return{saludo:"Hola desde nuxt js"}}},o=e(72),component=Object(o.a)(c,(function(){var t=this.$createElement;return(this._self._c||t)("div",[this._v("\n  "+this._s(this.saludo)+"\n")])}),[],!1,null,"fce571c2",null);n.default=component.exports}}]);
