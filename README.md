@@ -5,9 +5,18 @@ I share this blog system using the technologies of nuxjs (vuejs, vuex) and fireb
 
 ## Requirements
 
-this project requires to have a project configured in <a href="https://console.firebase.google.com/" target="_blank">firebase console</a>, <a href="https://firebase.google.com/docs/cli" target="_blank">cli firebase tools</a> and <a href="https://cli.vuejs.org/" target="_blank">vue cli</a>
+this project requires to have a project configured in <a href="https://console.firebase.google.com/" target="_blank">firebase console</a>, <a href="https://firebase.google.com/docs/cli" target="_blank">cli firebase tools</a> and <a href="https://cli.vuejs.org/" target="_blank">vue cli</a>.
+In firebase console enable the authentication methods of google, facebook and mail
+
+## Build Setup
+
+Clone this project
 
 ```bash
+# move to dir project
+$ cd nuxt-test
+
+# config project with firebase
 $ firebase init
 ```
 
@@ -34,18 +43,11 @@ At the end of the configuration edit the file firebase.json and add in the hosti
   },
   ...
 ```
-
-in firebase console enable the authentication methods of google, facebook and mail
-
-## Build Setup
-
-Clone this project
+Create or edit the .env file with the credentials of your project created in firebase
 
 ```bash
-# move to dir project
-$ cd nuxt-test
 
-# create or edit the .env file with the credentials of your project created in firebase
+# .env file set your config firebase
 
 KEY_API_FIREBASE='your-apiKey'
 AUTH_DOMAIN_FIREBASE='your-authDomain'
@@ -55,7 +57,7 @@ STORAGE_BUCKET_FIREBASE='your-storageBucket'
 MESSAGIN_SENDER_ID_FIREBASE='your-messagingSenderId'
 APPI_ID_FIREBASE='your-appId'
 
-# install dependencies
+# install dependencies in root and functions/ dir
 $ yarn install
 
 # serve with hot reload at localhost:3000

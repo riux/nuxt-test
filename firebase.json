@@ -10,7 +10,7 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [
+   "rewrites": [
       {
         "source": "**",
         "function": "nuxtRedir"
