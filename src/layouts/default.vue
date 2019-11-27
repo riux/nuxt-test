@@ -30,8 +30,12 @@
       </v-btn>
       <v-toolbar-title v-text="title" />
       <v-spacer />
-      <UserBtn @userData="userOpen = !userOpen" />
-      <Login></Login>
+      <template v-if="isUser">
+        <UserBtn @userData="userOpen = !userOpen" />
+      </template>
+      <template v-else>
+        <Login></Login>
+      </template>
     </v-app-bar>
     <v-content>
       <v-container>
@@ -76,6 +80,11 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js'
+    }
+  },
+  computed: {
+    isUser(){
+      return !_.isEmpty(this.$store.state.user)
     }
   },
   methods: {

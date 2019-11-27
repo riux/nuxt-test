@@ -9,6 +9,8 @@ const config = {
   dev: false
 }
 
+const db = admin.firestore()
+
 const nuxt = new Nuxt(config)
 
 let isReady = false
@@ -31,6 +33,16 @@ async function handleRequest(req, res) {
   await nuxt.render(req, res)
 }
 
+async function creteUser(user) {
+  try {
+    const ref = db.collection('users').doc(user.uid)
+    await ref.set({ email: user.email })
+  } catch (error) {
+    console.log('Error creteUser: ', error)
+  }
+}
+
 app.get('*', handleRequest)
 
 exports.nuxtRedir = functions.https.onRequest(app)
+exports.createUser = functions.auth.user().onCreate(creteUser)

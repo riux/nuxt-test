@@ -42,7 +42,12 @@ export default {
       }
     },
     logout() {
-      console.log('salir')
+      try {
+        this.$store.dispatch('firebase/logout')
+        this.$store.commit('setState', { name: 'user', value: null })
+      } catch (error) {
+        console.log('error en logout: ', error)
+      }
     }
   }
 }

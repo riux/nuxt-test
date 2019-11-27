@@ -1,3 +1,6 @@
+import JWTDecode from 'jwt-decode'
+import cookieparser from 'cookieparser'
+
 export const state = () => ({
   alert: {
     type: '',
@@ -22,6 +25,34 @@ export const mutations = {
   }
 }
 export const actions = {
+  nuxtServerInit({ commit }, { req }) {
+    try {
+      if (process.server && process.static) {
+        return false
+      }
+      if (!req.headers.cookie) {
+        return false
+      }
+      const parsed = cookieparser.parse(req.headers.cookie)
+      const accessTokenCookie = parsed.__session
+      if (!accessTokenCookie) {
+        return
+      }
+      const decoded = JWTDecode(accessTokenCookie)
+      if (decoded) {
+        commit('setState', {
+          name: 'user',
+          value: {
+            uid: decoded.user_id,
+            email: decoded.email
+          }
+        })
+      }
+    } catch (error) {
+      console.log('error en nuxtServerInit: ', error)
+    }
+  },
+
   showAlert({ commit }, { type, message, time }) {
     commit('showAlert', { type, message, time })
     setTimeout(() => {

@@ -1,3 +1,5 @@
+import Cookie from 'js-cookie'
+
 export const state = () => ({
 })
 export const mutations = {
@@ -42,22 +44,23 @@ export const actions = {
     if (_.isEmpty(account)) {
       const provider = new this.$firebase.auth[singInWith]()
       resp = await this.$firebase.auth().signInWithPopup(provider)
-      if (resp.additionalUserInfo.isNewUser){
-        await dispatch('fireSet', { collection: 'users', doc: resp.user.uid, data: { email: resp.user.email } })
-      }
     } else {
       resp = await this.$firebase.auth()[singInWith](account.email, account.password)
     }
     const token = await resp.user.getIdToken()
-    return { email: resp.user.email, uid: resp.user.uid, token }
+    Cookie.set('__session', token)
+    return { email: resp.user.email, uid: resp.user.uid }
   },
 
   async createUser({ dispatch }, account){
     await this.$firebase.auth().createUserWithEmailAndPassword(account.email, account.password)
     const token = await this.$firebase.auth().currentUser.getIdToken()
     const { email, uid } = await this.$firebase.auth().currentUser
-    await dispatch('fireSet', { collection: 'users', doc: uid, data: { email } })
     return { email, uid, token }
+  },
+  async logout(){
+    await this.$firebase.auth().signOut()
+    Cookie.remove('__session')
   }
 
 }

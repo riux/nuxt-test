@@ -219,12 +219,8 @@ export default {
     async loginAccount(singInWith) {
       try {
         this.loading = true
-        const resp = await this.$store.dispatch('firebase/fireLogin', {
-          singInWith
-        })
-        console.log('exito', resp)
-        this.loading = false
-        this.openIn = false
+        const resp = await this.$store.dispatch('firebase/fireLogin', { singInWith })
+        this.success(resp)
       } catch (e) {
         this.loading = false
         this.$store.dispatch('showAlert', {
@@ -270,6 +266,11 @@ export default {
         this.loading = false
         console.log(e)
       }
+    },
+    success(user){
+      this.$store.commit('setState', { name: 'user', value: user })
+      this.loading = false
+      this.openIn = false
     }
   }
 }

@@ -9,7 +9,8 @@
       sm8
       md6
     >
-      hola
+      hola user:
+      {{ $store.state.user }}
     </v-col>
   </v-row>
 </template>
