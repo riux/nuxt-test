@@ -10,6 +10,7 @@ const config = {
 }
 
 const db = admin.firestore()
+const auth = admin.auth()
 
 const nuxt = new Nuxt(config)
 
@@ -35,8 +36,13 @@ async function handleRequest(req, res) {
 
 async function creteUser(user) {
   try {
-    const ref = db.collection('users').doc(user.uid)
-    await ref.set({ email: user.email })
+    await auth.setCustomUserClaims(user.uid, { admin: true })
+    const batch = db.batch()
+    const refRol = db.collection('roles').doc(user.uid)
+    batch.set(refRol, { rol: { admin: true } })
+    const refUser = db.collection('users').doc(user.uid)
+    batch.set(refUser, { email: user.email })
+    return batch.commit()
   } catch (error) {
     console.log('Error creteUser: ', error)
   }

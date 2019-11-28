@@ -35,6 +35,7 @@ export default {
    */
   plugins: [
     { src: '~/plugins/firebase.js' },
+    { src: '~/plugins/util.js' },
     { src: '~/plugins/vuetify.js', mode: 'client' }
   ],
   /*

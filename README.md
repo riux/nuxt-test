@@ -5,7 +5,7 @@ I share this blog system using the technologies of nuxjs (vuejs, vuex) and fireb
 
 ## Requirements
 
-this project requires to have a project configured in <a href="https://console.firebase.google.com/" target="_blank">firebase console</a>, <a href="https://firebase.google.com/docs/cli" target="_blank">cli firebase tools</a> and <a href="https://cli.vuejs.org/" target="_blank">vue cli</a>.
+this project requires nodejs and to have a project configured in <a href="https://console.firebase.google.com/" target="_blank">firebase console</a>, <a href="https://firebase.google.com/docs/cli" target="_blank">cli firebase tools</a> and <a href="https://cli.vuejs.org/" target="_blank">vue cli</a>.
 In firebase console enable the authentication methods of google, facebook and mail
 
 ## Build Setup
