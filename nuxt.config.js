@@ -95,6 +95,11 @@ export default {
      */
     extend(config, ctx) {}
   },
+  router: {
+    middleware: [
+      'authenticated'
+    ]
+  },
   env: {
     keyFb: process.env.KEY_API_FIREBASE,
     authDomainFirebase: process.env.AUTH_DOMAIN_FIREBASE,

@@ -39,6 +39,16 @@ export const actions = {
     return resp
   },
 
+  async fireGetAll({ commit }, collection) {
+    const docRefTop = this.$firebase.firestore().collection(collection)
+    const arrResp = []
+    const resp = await docRefTop.get()
+    for (let i = 0; i < resp.docs.length; i++) {
+      arrResp.push({ ...resp.docs[i].data(), id: resp.docs[i].id })
+    }
+    return arrResp
+  },
+
   async fireLogin({ dispatch }, { singInWith, account }) {
     let resp
     if (_.isEmpty(account)) {

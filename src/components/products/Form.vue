@@ -38,6 +38,9 @@
               >
               </v-text-field>
             </v-col>
+            <v-col cols="12">
+              <Categories />
+            </v-col>
           </v-row>
         </v-form>
       </v-container>
@@ -50,8 +53,11 @@
   </v-card>
 </template>
 <script>
+import Categories from '~/components/products/Categories.vue'
 export default {
-  components: {},
+  components: {
+    Categories
+  },
   data() {
     return {
       formTitle: 'Agregar Producto',

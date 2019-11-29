@@ -34,14 +34,14 @@ export default {
       openIn: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'fab fa-500px',
           title: 'Welcome',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'fab fa-product-hunt',
+          title: 'Products',
+          to: '/admin/product/'
         }
       ]
 
